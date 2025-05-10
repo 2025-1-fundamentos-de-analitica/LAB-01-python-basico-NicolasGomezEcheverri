@@ -17,6 +17,18 @@ def pregunta_10():
      ...
      ('E', 2, 3),
      ('E', 3, 3)]
-
-
     """
+    with open("files/input/data.csv", "r") as file:
+        lines = file.readlines()
+
+    resultado = []
+
+    for line in lines:
+        partes = line.strip().split('\t')
+        letra = partes[0]
+        columna4 = partes[3].split(',')
+        columna5 = partes[4].split(',')
+        resultado.append((letra, len(columna4), len(columna5)))
+
+    return resultado
+print(pregunta_10())

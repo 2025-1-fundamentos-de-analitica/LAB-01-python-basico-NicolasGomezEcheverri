@@ -25,5 +25,20 @@ def pregunta_08():
      (7, ['A', 'C', 'D', 'E']),
      (8, ['A', 'B', 'D', 'E']),
      (9, ['A', 'B', 'C', 'E'])]
-
     """
+    with open("files/input/data.csv", "r") as file:
+        lines = file.readlines()
+
+    resultado = {}
+
+    for line in lines:
+        partes = line.strip().split('\t')
+        letra = partes[0]
+        numero = int(partes[1])
+        if numero not in resultado:
+            resultado[numero] = set()
+        resultado[numero].add(letra)
+
+    resultado_final = [(num, sorted(list(letras))) for num, letras in sorted(resultado.items())]
+    return resultado_final
+print(pregunta_08())
